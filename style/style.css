@@ -20,6 +20,14 @@ h1 {
     color: #fff;
 }
 
+/* Ensure div and form have the same width */
+div.center, form {
+    width: 290px; /* Set a consistent width */
+    max-width: 90%; /* Ensure responsiveness */
+    margin: 0 auto; /* Center horizontally */
+    text-align: center; /* Center content */
+}
+
 /* Form container styling */
 form {
     background: rgba(0, 0, 0, 0.7);
