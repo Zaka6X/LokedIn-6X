@@ -32,6 +32,7 @@ form {
 
 /* Input fields */
 form input[type="email"],
+form input[type="password"],
 form input[type="text"],
 form input[type="date"],
 form select {
@@ -75,9 +76,35 @@ form button:hover {
     background: #00bfa5;
 }
 
-/* Dropdown styling */
-form select {
-    background: #fff;
-    color: #333;
+.inscription {
+    margin-top: 20px;
     font-size: 14px;
+    color: #ccc;
+    text-align: center;
+}
+
+.inscription a {
+    color: #00d1b2;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.inscription a:hover {
+    color: #00bfa5;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.input-container i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 18px;
 }
