@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locked In - Insciption</title>
+</head>
+<body>
+    <h1>Inscription</h1>
+
+    <form action="post">
+        <input type="email" id="email" name="email" placeholder="Email" required><br><br>
+
+        <input type="text" id="firstname" name="firstname" placeholder="First Name" required><br><br>
+
+        <input type="text" id="lastname" name="lastname" placeholder="Last Name" required><br><br>
+
+        <input type="date" id="dob" name="dob" required><br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female" required>
+        <label for="female">Female</label><br><br>
+
+        <input type="text" id="address" name="address" placeholder="Address" required><br><br>
+
+        <select id="user-type" name="user-type" required>
+            <option disabled selected>Choose an option</option>
+            <option value="enseignants">Enseignants</option>
+            <option value="etudiants">Etudiants</option>
+        </select><br><br>
+
+        <button type="submit">Inscrit</button>
+    </form>
+</body>
+</html>
