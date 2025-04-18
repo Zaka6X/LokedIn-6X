@@ -116,3 +116,11 @@ form button:hover {
     color: #aaa;
     font-size: 18px;
 }
+
+/* Style images in the home page */
+.home img {
+    width: 80%; /* Default width for images */
+    max-width: 300px; /* Limit the maximum width */
+    margin: 10px 0;
+    display: inline-block; /* Default inline for larger screens */
+}

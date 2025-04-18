@@ -3,6 +3,7 @@ const path = require('path');
 const mysql = require("mysql");
 const dotenv = require('dotenv');
 
+
 dotenv.config({ path: './.env' });
 
 const app = express();
@@ -11,7 +12,8 @@ const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE
+    database: process.env.DATABASE,
+    port: process.env.DATABASE_PORT
 });
 
 // Serve static files from the "public" directory
@@ -21,7 +23,7 @@ app.use(express.static(publicPath));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.set('view engine', 'hbs');
+app.set('view engine', 'html');
 
 db.connect((e) => {
     if (e) {
@@ -33,7 +35,7 @@ db.connect((e) => {
 
 // Serve index.html on the root route
 app.get("/", (req, res) => {
-    res.sendFile(path.join(publicPath, 'index.html'));
+    res.render('index');
 });
 
 //Define routes

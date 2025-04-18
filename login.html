@@ -11,17 +11,17 @@
 <body>
 <div class="center" align="center">
     <h1>Login</h1>
-    <form action="post">
+    <form method="post" action="/auth/login">
         <div class="input-container">
             <i class='bx bxs-user'></i>
-            <input type="text" placeholder="Email" required>
+            <input type="text" name="email" placeholder="Email" required>
         </div>
         <div class="input-container">
-            <i class='bx bxs-lock-alt' ></i> 
-            <input type="password" placeholder="Password" required>
+            <i class='bx bxs-lock-alt'></i> 
+            <input type="password" name="password" placeholder="Password" required>
         </div>
         <br><br>
-        <button type="submit" class="button" >login</button>
+        <button type="submit" class="button">login</button>
         <br><br><br>
         <div class="inscription">
             <a href="inscri.html"> don't have an account? </a>
