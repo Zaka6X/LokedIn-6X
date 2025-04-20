@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locked In - Insciption</title>
+    <title>LockedIn 6X - Insciption</title>
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/responsive.css">
 </head>
 <body>
-    <script src="app.js"></script>
+<div class="center" align="center">
     <h1>Inscription</h1>
-
-    <form action="post">
+    <form action="/auth/inscri" method="POST">
         <input type="email" id="email" name="email" placeholder="Email" required><br>
+
+        <input type="password" id="password" name="password" placeholder="Password" required><br>
 
         <input type="text" id="firstname" name="firstname" placeholder="First Name" required><br>
 
@@ -28,14 +30,19 @@
 
         <input type="text" id="address" name="address" placeholder="Address" required><br>
 
-        <select id="user-type" name="user-type" required>
-            <option disabled selected>Choose an option</option>
+        <select id="user-type" name="usertype" required>
+            <option disabled selected>Type of User</option>
             <option value="enseignants">Enseignants</option>
             <option value="etudiants">Etudiants</option>
         </select><br><br>
 
         <button type="submit">Inscrit</button>
+
+        <div class="inscription">
+            <a href="index.html"> have an account? </a>
+        </div>
     </form>
-    
+</div>
+<script src="scripts/app.js"></script>
 </body>
 </html>

@@ -20,6 +20,14 @@ h1 {
     color: #fff;
 }
 
+/* Ensure div and form have the same width */
+div.center, form {
+    width: 290px; /* Set a consistent width */
+    max-width: 90%; /* Ensure responsiveness */
+    margin: 0 auto; /* Center horizontally */
+    text-align: center; /* Center content */
+}
+
 /* Form container styling */
 form {
     background: rgba(0, 0, 0, 0.7);
@@ -107,4 +115,15 @@ form button:hover {
     transform: translateY(-50%);
     color: #aaa;
     font-size: 18px;
+<<<<<<< HEAD
+=======
+}
+
+/* Style images in the home page */
+.home img {
+    width: 80%; /* Default width for images */
+    max-width: 300px; /* Limit the maximum width */
+    margin: 10px 0;
+    display: inline-block; /* Default inline for larger screens */
+>>>>>>> origin/zaka6x
 }
