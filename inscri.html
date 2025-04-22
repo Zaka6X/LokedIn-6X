@@ -13,7 +13,7 @@
     <form action="/auth/inscri" method="POST">
         <input type="email" id="email" name="email" placeholder="Email" required><br>
 
-        <input type="password" id="password" name="password" placeholder="Password" required><br>
+        <input type="password" id="password" name="password" placeholder="Password" minlength="8" required><br>
 
         <input type="text" id="firstname" name="firstname" placeholder="First Name" required><br>
 
@@ -34,8 +34,11 @@
             <option disabled selected>Type of User</option>
             <option value="enseignants">Enseignants</option>
             <option value="etudiants">Etudiants</option>
-        </select><br><br>
-
+        </select>
+        <div id="message">
+            <!-- Message will be displayed here dynamically -->
+        </div>
+        <br><br>
         <button type="submit">Inscrit</button>
 
         <div class="inscription">
@@ -43,6 +46,6 @@
         </div>
     </form>
 </div>
-<script src="scripts/app.js"></script>
+<script src="scripts/message.js"></script>
 </body>
 </html>

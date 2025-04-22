@@ -20,7 +20,7 @@ exports.inscri = async (req, res) => {
       if (err) {
         console.log(err);
       } else if (results.length > 0) {
-        console.log('email exist');
+        return res.status(401).json({ message: "Email is already used" });
       } else {
         db.query("INSERT INTO users SET ?", {
           email: email,
@@ -56,7 +56,7 @@ exports.login = async (req, res) => {
 
     if (results.length === 0) {
       console.log("Email not found");
-      return res.status(401).send("Email or password is incorrect");
+      return res.status(401).json({ message: "Email or password is incorrect" });
     }
 
     const user = results[0];
@@ -64,10 +64,10 @@ exports.login = async (req, res) => {
 
     if (!isMatch) {
       console.log("Password incorrect");
-      return res.status(401).send("Email or password is incorrect");
+      return res.status(401).json({ message: "Email or password is incorrect" });
     }
 
     console.log("Login successful!");
-    res.send("Login successful");
+    return res.status(200).json({ message: "Login successful!" });  
   });
 };
