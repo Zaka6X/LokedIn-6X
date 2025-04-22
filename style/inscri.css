@@ -1,0 +1,81 @@
+/* Style général */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: white;
+  }
+  
+  /* Conteneur centré */
+  .center {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #1f1f1f;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Titre */
+  .center h1 {
+    margin-bottom: 30px;
+  }
+  
+  /* Champs de formulaire */
+  .center input[type="email"],
+  .center input[type="password"],
+  .center input[type="text"],
+  .center input[type="date"],
+  .center select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #fbf9f9;
+    color: white;
+  }
+  
+  .center input[type="radio"] {
+    margin-top: 10px;
+  }
+  
+  .center label {
+    font-size: 0.95rem;
+    margin-right: 10px;
+  }
+  
+  /* Bouton */
+  .center button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #f0f0f0;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .center button:hover {
+    background-color: #cccccc;
+  }
+  
+  /* Lien vers la page de connexion */
+  .inscription {
+    margin-top: 20px;
+  }
+  
+  .inscription a {
+    color: #00bfff;
+    text-decoration: none;
+  }
+  
+  .inscription a:hover {
+    text-decoration: underline;
+  }
+  

@@ -10,20 +10,6 @@ form {
     max-width: 400px;
 }
 
-/* Center align images and reduce their size */
-.home img {
-    width: 80%;
-    max-width: 200px;
-    margin: 10px 0;
-}
-
-/* Adjust input fields and buttons */
-.input-container input,
-form button {
-    font-size: 14px;
-    padding: 8px;
-}
-
 /* Center the form on all devices */
 .center {
     display: flex;
@@ -83,5 +69,38 @@ form {
     form button {
         font-size: 12px; /* Adjust button font size */
         padding: 8px; /* Adjust padding */
+    }
+
+}
+
+/* Media query for tablets (768px and below) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 24px; /* Adjust heading size */
+    }
+
+    .home img {
+        width: 70%; /* Reduce image size */
+        max-width: 200px; /* Limit maximum width */
+    }
+
+    .inscription a {
+        font-size: 16px; /* Adjust link font size */
+    }
+}
+
+/* Media query for mobile devices (480px and below) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px; /* Adjust heading size */
+    }
+
+    .home img {
+        display: block; /* Stack vertically */
+        margin: 10px auto; /* Center images */
+    }
+
+    .inscription a {
+        font-size: 14px; /* Adjust link font size */
     }
 }
