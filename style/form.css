@@ -1,0 +1,84 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-signin h1 {
+  margin-bottom: 20px;
+}
+
+.form-floating {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.form-floating input {
+  height: 3.5rem;
+  padding: 1rem 0.75rem 0 0.75rem;
+  border: 1px solid #ced4da;
+  width: 100%;
+  font-size: 1rem;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.form-floating:first-child input {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-bottom: -1px;
+}
+
+.form-floating:last-of-type input {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.form-floating label {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  font-size: 0.9rem;
+  color: #6c757d;
+  pointer-events: none;
+  transition: all 0.2s;
+}
+
+.form-floating input:focus + label,
+.form-floating input:not(:placeholder-shown) + label {
+  top: 0.3rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  color: #495057;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.375rem;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}

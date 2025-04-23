@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LockedIn 6X - Login</title>
+  <link rel="stylesheet" href="style/form.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<main class="form-signin">
+  <h1 class="h3 mb-3 fw-normal" style="text-align: center;">SIGN UP</h1>
+
+  <form method="post" action="/auth/signup">
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" name="email" required>
+      <label for="floatingInput">email</label>
+    </div>
+
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword"  name="password" required>
+      <label for="floatingPassword">mot de passe</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingPassword"  name="nom" required>
+      <label for="floatingPassword">nom</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingPassword"  name="prenom" required>
+      <label for="floatingPassword">prénom</label>
+    </div>
+    <div class="form-floating">
+      <input type="date" class="form-control" id="floatingPassword"  name="dob" required>
+      <label for="floatingPassword">date de naissance</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingPassword"  name="sexe" required>
+      <label forname="floatingPassword">sexe</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" class="form-control" id="floatingPassword"  name="filiere" required>
+        <label for="floatingPassword">filière</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingPassword"  name="etablissement" required>
+        <label for="floatingPassword">etablissement</label>
+      </div>
+    <br/>
+    <div id="message" style="text-align:center;"></div>
+    <br>
+    <div align="center">
+      <button class="btn btn-lg btn-primary w-100" type="submit">Sign up</button>
+    </div>
+    <p class="mt-5 mb-3 text-muted" style="text-align:center;">Have an account? <a href="login.html">Log in</a></p>
+  </main>  
+<script src="scripts/message.js"></script>
+</body>
+</html>

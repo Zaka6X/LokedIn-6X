@@ -1,16 +1,23 @@
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const cookieParser = require('cookie-parser');
+
+const express = require('express');
+const app = express();
+app.use(cookieParser());
+
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE
+    database: process.env.DATABASE,
+    port: process.env.DATABASE_PORT
 });
 
-exports.inscri = async (req, res) => {
-    const { email, password, firstname, lastname, dob, gender, address, usertype } = req.body;
+exports.signup = async (req, res) => {
+    const { email, password, nom , prenom , dob, sexe , filiere , etablissement } = req.body;
 
     // //Encrypted password:
     const hashedPassword = await bcrypt.hash(password, 8);
@@ -20,17 +27,18 @@ exports.inscri = async (req, res) => {
       if (err) {
         console.log(err);
       } else if (results.length > 0) {
-        return res.status(401).json({ message: "Email is already used" });
+        console.log('email exist');
       } else {
         db.query("INSERT INTO users SET ?", {
           email: email,
           password: hashedPassword,
-          firstname: firstname,
-          lastname: lastname,
+          nom: nom,
+          prenom: prenom,
           dob: dob,
-          gender: gender,
-          address: address,
-          usertype: usertype,
+          sexe: sexe,
+          etablissement: etablissement,
+          filiere: filiere
+        
         }, (error, result) => {
           if (error) {
             console.log(error);
@@ -46,7 +54,7 @@ exports.inscri = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-  console.log(email);
+  
 
   db.query("SELECT * FROM users WHERE email = ?", [email], async (err, results) => {
     if (err) {
@@ -66,8 +74,28 @@ exports.login = async (req, res) => {
       console.log("Password incorrect");
       return res.status(401).json({ message: "Email or password is incorrect" });
     }
+    // Crée le token JWT
+    const token = jwt.sign(
+      { nom: user.nom, email: user.email},
+      process.env.JWT_SECRET,
+      {
+        expiresIn: process.env.JWT_EXPIRES_IN || '1d'
+      }
+    );
+
+    // Envoie le token dans un cookie sécurisé
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', // true en prod avec HTTPS
+      maxAge: 24 * 60 * 60 * 1000, // 1 jour
+    });
 
     console.log("Login successful!");
-    return res.status(200).json({ message: "Login successful!" });  
+    console.log("jwt cree",token);
+    res.status(200).json({ message: "Login successful" });
+
+
+    
   });
+
 };
