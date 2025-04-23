@@ -19,7 +19,11 @@ document.querySelector("form").addEventListener("submit", async (event) => {
       // Display error message
       messageDiv.innerHTML = `<span style="color: red;">${result.message}</span>`;
     } else {
-      window.location.href = "../index.html"; // Change to your desired redirect URL
+      if (form.action.includes("/signup")) {
+        window.location.href = "../login.html";
+      } else if (form.action.includes("/login")) {
+        window.location.href = "../index.html";
+      }
     }
   } catch (error) {
     console.error("Error:", error);

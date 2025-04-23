@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 
 const express = require('express');
 const app = express();
-app.use(cookieParser());
+app.use(cookieParser()); 
 
 
 const db = mysql.createConnection({
@@ -27,7 +27,7 @@ exports.signup = async (req, res) => {
       if (err) {
         console.log(err);
       } else if (results.length > 0) {
-        console.log('email exist');
+        return res.status(401).json({ message: "email exist" });
       } else {
         db.query("INSERT INTO users SET ?", {
           email: email,
@@ -43,7 +43,7 @@ exports.signup = async (req, res) => {
           if (error) {
             console.log(error);
           } else {
-            res.redirect('../login.html');
+            res.status(200).json({ message: "Signup successful" });
           }
         });
       }
