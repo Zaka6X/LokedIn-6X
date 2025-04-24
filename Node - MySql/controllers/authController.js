@@ -89,13 +89,16 @@ exports.login = async (req, res) => {
       secure: process.env.NODE_ENV === 'production', // true en prod avec HTTPS
       maxAge: 24 * 60 * 60 * 1000, // 1 jour
     });
-
     console.log("Login successful!");
-    console.log("jwt cree",token);
-    res.status(200).json({ message: "Login successful" });
-
-
-    
+    return res.status(200).json({ username: user.nom });
   });
+};
 
+exports.logout = (req, res) => {
+  res.cookie('jwt', '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    expires: new Date(0) // Expire immediately
+  });
+  res.status(200).json({ message: "Logged out successfully" });
 };

@@ -15,6 +15,7 @@ document.querySelector("form").addEventListener("submit", async (event) => {
     const result = await response.json();
 
     const messageDiv = document.querySelector("#message");
+    const welcomemessage = document.querySelector("#welcome");
     if (!response.ok) {
       // Display error message
       messageDiv.innerHTML = `<span style="color: red;">${result.message}</span>`;
@@ -22,7 +23,11 @@ document.querySelector("form").addEventListener("submit", async (event) => {
       if (form.action.includes("/signup")) {
         window.location.href = "../login.html";
       } else if (form.action.includes("/login")) {
-        window.location.href = "../index.html";
+          // Store the username in localStorage
+          localStorage.setItem("username", result.username);
+      
+          // Redirect to the dashboard
+          window.location.href = "../dashboard.html";
       }
     }
   } catch (error) {

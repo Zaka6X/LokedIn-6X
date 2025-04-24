@@ -26,20 +26,39 @@ body {
 }
 
 .cover-container {
-  max-width: 42em;
+  max-width: 50em;
 }
 
 
-/*
- * Header
- */
+.banner {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.arrow-down {
+  font-size: 1.3rem;
+  color: #f8f9fa;
+  margin-top: 10px;
+  animation: bounce 2s infinite;
+}  
 
-.nav-masthead .nav-link {
+.nav-masthead .nav-link,
+.nav-masthead .logout-link {
   padding: .25rem 0;
   font-weight: 700;
-  color: rgba(255, 255, 255, .5);
   background-color: transparent;
   border-bottom: .25rem solid transparent;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+.nav-masthead .nav-link {
+  color: rgba(255, 255, 255, .5);
+}
+
+.nav-masthead .logout-link {
+  color: #d81111c2;
 }
 
 .nav-masthead .nav-link:hover,
@@ -47,11 +66,27 @@ body {
   border-bottom-color: rgba(255, 255, 255, .25);
 }
 
-.nav-masthead .nav-link + .nav-link {
-  margin-left: 1rem;
+.nav-masthead .logout-link:hover,
+.nav-masthead .logout-link:focus {
+  border-bottom-color: #d81111c2;
 }
 
-.nav-masthead .active {
-  color: #fff;
-  border-bottom-color: #fff;
+/* Remove left margin from the first link */
+.nav-masthead .nav-link:first-child,
+.nav-masthead .logout-link:first-child {
+  margin-left: 0;
+}
+
+
+
+.option {
+  border: 1.5px solid #000000;
+  border-radius: 10px;
+  padding: 1.5rem;
+  background-color: #28166b;
+}
+
+.btn-action{
+  color: #000000  ;
+  background-color: #f8f8f8;
 }
