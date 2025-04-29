@@ -6,6 +6,12 @@ document.querySelectorAll("form").forEach(form => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
+    // Fix here: handle multiple options
+    const options = formData.getAll('options[]');
+    if (options.length > 0) {
+      data.options = options;
+    }
+
     try {
       const response = await fetch(form.action, {
         method: form.method,
@@ -28,10 +34,11 @@ document.querySelectorAll("form").forEach(form => {
 
         } else if (form.action.includes("/creerexam")) {
           localStorage.setItem("examId", result.id);
-          const examIdInput = document.getElementById("examId");
-          if (examIdInput) {
-            examIdInput.value = result.id;
-          }
+          const examIdInputs = document.querySelectorAll("#examIdQCM, #examIdDQ");
+          examIdInputs.forEach(input => {
+              if (input) input.value = result.id;
+          });
+
           document.getElementById("examLinkDisplay").value = result.link;
           
           typequestion();
@@ -39,7 +46,11 @@ document.querySelectorAll("form").forEach(form => {
         } else if (form.action.includes("/addquestion")) {
           messageDiv.innerHTML = `<span style="color: green;">${result.message}</span>`;
           form.reset(); 
-        }
+          if (form.id === "Qcm-question") {
+            document.getElementById("optionList").innerHTML = "";
+            updateAnswerSelect();
+          }
+        } 
       }
     } catch (error) {
       console.error("Error:", error);
@@ -48,13 +59,18 @@ document.querySelectorAll("form").forEach(form => {
 });
 
 
-document.getElementById("creationDone").addEventListener("click", function() {
-  const examLink = document.getElementById("examLinkDisplay").value;
-    if (examLink) {
-      document.getElementById("Qcm-question").style.display = "none";
-      document.getElementById("Dq-question").style.display = "none";
-      document.getElementById("examCreatedBox").style.display = "block";
-    }
+["creationDoneQCM", "creationDoneDQ"].forEach(id => {
+  const btn = document.getElementById(id);
+  if (btn) {
+    btn.addEventListener("click", function() {
+      const examLink = document.getElementById("examLinkDisplay").value;
+      if (examLink) {
+        document.getElementById("Qcm-question").style.display = "none";
+        document.getElementById("Dq-question").style.display = "none";
+        document.getElementById("examCreatedBox").style.display = "block";
+      }
+    });
+  }
 });
 
 

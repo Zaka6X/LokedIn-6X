@@ -30,24 +30,38 @@ exports.creerexam = (req, res) => {
 };
 
 exports.addquestion = (req, res) => {
-    
-    const { examId, question, OP1, OP2, OP3, answer } = req.body;
-    db.query("INSERT INTO question SET ?", {
-      id: examId,
-      Question: question,
-      OP1: OP1,
-      OP2: OP2,
-      OP3: OP3,
-      Reponse: answer
-    }, (error, result) => {
+  const { examId, question, note, duree, answer } = req.body;
+  const options = req.body.options; // Array of options
+  console.log(options);
+
+  db.query("INSERT INTO question SET ?", {
+      Id_exam: examId,
+      question_text: question,
+      reponse: answer,
+      note: note,
+      duree: duree
+  }, (error, result) => {
       if (error) {
-        console.error("Database error:", error);
-        return res.status(500).send("An error occurred while adding the question.");
+          console.error("Database error:", error);
+          return res.status(500).send("Error adding question.");
       }
 
-      res.status(201).json({ message: "Question Added!" });
+      const questionId = result.insertId;
 
+      if (Array.isArray(options)) {
+          const optionsValues = options.map((opt,index) => [questionId, opt,  `OP${index + 1}`]);
+          db.query("INSERT INTO options (Id_question, option_text, OP_nbr) VALUES ?", [optionsValues], (optError) => {
+              if (optError) {
+                  console.error("Database error:", optError);
+                  return res.status(500).send("Error adding options.");
+              }
+              console.log("Question added and opt");
+              res.status(201).json({ message: "Question and options added!" });
+          });
+      } else {
+        console.log("Question added and not opt");
 
-    });
-  };                                                  
-  
+          res.status(201).json({ message: "Question added without options." });
+      }
+  });
+};

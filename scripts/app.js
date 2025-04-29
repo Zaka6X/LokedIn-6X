@@ -1,4 +1,4 @@
-const username = localStorage.getItem("username");
+const username = localStorage.getItem("username")?.toUpperCase();
 if (username) {
     document.getElementById("welcome").innerHTML = `<h1>Ravi de vous avoir, ${username}!</h1>`;
 }

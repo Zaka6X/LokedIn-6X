@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 
 const app = express();
+app.use(express.json());
+
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -41,6 +43,8 @@ const authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
 const examRouter = require('./routes/exam');
 app.use('/auth', examRouter);
+const passRouter = require('./routes/pass');
+app.use('/auth', passRouter);
 
 app.listen(4000, () => {
     console.log("Server Started on Port 4000");

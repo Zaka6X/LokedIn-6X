@@ -24,6 +24,8 @@
         <label for="description">Description</label>
     </div>
       <button type="submit" class="btn btn-primary">Créer</button>
+      <br><br>
+      <a class="btn btn-action w-100" href="dashboard.html">Retour au Formulaire</a>
     </form>
 
     <!-- After Creation Form (initially hidden) -->
@@ -40,53 +42,68 @@
     
     <!-- Qcm Choice-->
     <form id="Qcm-question" action="/auth/addquestion" method="post" style="display: none;">
-        <input type="hidden" name="examId" id="examId" value="">
+        <input type="hidden" name="examId" id="examIdQCM" value="">
         <div class="form-floating mb-3">
             <input type="text" class="form-control" name="question" id="question" placeholder="Question" required>
             <label for="question">Question</label>
         </div>
+        <label>Options :</label>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="OP1" id="option1" placeholder="Option 1" required>
-            <label for="OP1">Option 1</label>
+            <input type="text" class="form-control" name="options[]" id="option1" placeholder="Option 1" required>
+            <label for="option1">Option 1</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="OP2" id="option2" placeholder="Option 2" required>
-            <label for="OP2">Option 2</label>
+            <input type="text" class="form-control" name="options[]" id="option2" placeholder="Option 2" required>
+            <label for="option2">Option 2</label>
         </div>
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="OP3" id="option3" placeholder="Option 3" required>
-            <label for="OP3">Option 3</label>
-        </div>
+        <div id="optionsContainer" class="mb-3">
+            <div id="optionList"></div>
+            <button type="button" onclick="addOption()" class="btn btn-sm btn-success">Ajouter Option</button>
+          </div>
         <div class="form-floating mb-3">
             <select class="form-select" name="answer" id="answer" required>
                 <option value="" disabled selected>Reponse Correcte</option>
-                <option value="OP1">A</option>
-                <option value="OP2">B</option>
-                <option value="OP3">C</option>
+                <option value="OP1">Option 1</option>
+                <option value="OP2">Option 2</option>
             </select>
         </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="note" id="note" placeholder="Note de la Question" required>
+            <label for="mote">Note de la Question</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="duree" id="duree" placeholder="Duree de la Question" required>
+            <label for="mote">Duree de la Question</label>
+        </div>
         <button type="submit" class="btn btn-secondary">Ajouter Question</button>
-        <br>
+        <br><br>
         <div id="message" style="text-align:center;"></div>
-        <button id="creationDone" class="btn btn-primary">Creer l'examen</button>
+        <button id="creationDoneQCM" class="btn btn-primary">Creer l'examen</button>
     </form>
 
     <!-- Dq Choice-->
     <form id="Dq-question" action="/auth/addquestion" method="post" style="display: none;">
-        <input type="hidden" name="examId" id="examId" value="">
+        <input type="hidden" name="examId" id="examIdDQ" value="">
         <div class="form-floating mb-3">
             <input type="text" class="form-control" name="question" id="question" placeholder="Question" required>
             <label for="question">Question</label>
         </div>
         <div class="form-floating mb-3">
             <input type="text" class="form-control" name="answer" id="answer" placeholder="Answer" required>
-            <label for="question">Question</label>
+            <label for="question">Reponse Correcte</label>
         </div>
-
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="note" id="note" placeholder="Note de la Question" required>
+            <label for="mote">Note de la Question</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="duree" id="duree" placeholder="Duree de la Question" required>
+            <label for="mote">Duree de la Question</label>
+        </div>
         <button type="submit" class="btn btn-secondary">Ajouter Question</button>
-        <br>
+        <br><br>
         <div id="message" style="text-align:center;"></div>
-        <button id="creationDone" class="btn btn-primary">Creer l'examen</button>
+        <button id="creationDoneDQ" class="btn btn-primary">Creer l'examen</button>
     </form>
       
     <!-- Exam Created Message (initially hidden) -->
@@ -95,9 +112,8 @@
         <p>Voici le lien de votre examen :</p>
         <input type="text" id="examLinkDisplay" class="form-control" readonly>
         <br>
-        <button id="goToDashboard" class="btn btn-success" onclick="creationfinish()">Retour a l'accuiel</button>
+        <button id="goToDashboard" class="btn btn-success">Retour a l'accuiel</button>
   </div>
-  
 
   </div>
   <script src="scripts/exams.js"></script>
