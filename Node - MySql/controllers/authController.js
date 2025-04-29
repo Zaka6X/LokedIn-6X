@@ -5,15 +5,14 @@ const cookieParser = require('cookie-parser');
 
 const express = require('express');
 const app = express();
-app.use(cookieParser());
+app.use(cookieParser()); 
 
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE,
-    port: process.env.DATABASE_PORT
+    database: process.env.DATABASE
 });
 
 exports.signup = async (req, res) => {
@@ -27,7 +26,7 @@ exports.signup = async (req, res) => {
       if (err) {
         console.log(err);
       } else if (results.length > 0) {
-        console.log('email exist');
+        return res.status(401).json({ message: "email exist" });
       } else {
         db.query("INSERT INTO users SET ?", {
           email: email,
@@ -43,7 +42,7 @@ exports.signup = async (req, res) => {
           if (error) {
             console.log(error);
           } else {
-            res.redirect('../login.html');
+            res.status(200).json({ message: "Signup successful" });
           }
         });
       }
@@ -89,13 +88,16 @@ exports.login = async (req, res) => {
       secure: process.env.NODE_ENV === 'production', // true en prod avec HTTPS
       maxAge: 24 * 60 * 60 * 1000, // 1 jour
     });
-
     console.log("Login successful!");
-    console.log("jwt cree",token);
-    res.status(200).json({ message: "Login successful" });
-
-
-    
+    return res.status(200).json({ username: user.nom });
   });
+};
 
+exports.logout = (req, res) => {
+  res.cookie('jwt', '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    expires: new Date(0) // Expire immediately
+  });
+  res.status(200).json({ message: "Logged out successfully" });
 };

@@ -1,0 +1,50 @@
+<!-- math-1745620491024 -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LockedIn 6X - Passer l’Examen</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style/form.css">
+</head>
+<body>
+  <div class="form-container">
+      
+    <!-- Add Link Exam -->
+    <form id="getlinkform" action="/auth/getquestions" method="post">
+        <h3>Votre Link d'Invitation !</h3>
+        <input type="text" name="link" id="link" class="form-control" style="border: 1px solid black;">
+        <br>
+        <button type="submit" id="commence_exam" class="btn btn-success">Commencer l'Examen</button>
+            <br>
+        <div id="message"></div>
+        <br>
+
+        <a class="btn btn-action w-100" href="dashboard.html">Retour au Formulaire</a>
+    </form>
+
+    <!-- affiche question  -->
+    <div id="questionarea" class="form-container" style="display: none;">
+        <h2 id="question-title">Loading...</h2>
+        <div id="answers"></div>
+        <br><br>    
+        <button id="next-question" class="btn btn-primary">Suivant</button>
+        <div id="timer" style="color: red; margin: 20px 0;"></div>
+    </div>
+    
+    
+    <!-- affiche note  -->
+    <div id="final_note" class="form-container" style="display: none;">
+        <h1 id="question-title">Examen Terminé !</h1>
+        <h2 id="affichenote"></h2>
+        <br><br>    
+        <a class="btn btn-action w-100" href="dashboard.html">Retour au Formulaire</a>
+    </div>
+
+  </div>
+  <script src="scripts/passexams.js"></script>
+  <script src="scripts/result.js"></script>
+</body>
+</html>
