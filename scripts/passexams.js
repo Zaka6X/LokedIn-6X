@@ -24,6 +24,7 @@ document.getElementById("getlinkform").addEventListener("submit", async (e) => {
       examData = data.questions;
       document.getElementById("getlinkform").style.display = "none";
       document.getElementById("questionarea").style.display = "block";
+      document.querySelector(".form-container").classList.add("show-questions");
       showQuestion();
     } else {
       document.getElementById("message").innerHTML = `<span style="color: red;">${data.message}</span>`;
@@ -64,13 +65,19 @@ function showQuestion() {
       answersDiv.appendChild(document.createElement("br"));
     });
   } else {
-    const input = document.createElement("input");
-    input.type = "text";
-    input.name = "answer";
-    input.id = "directAnswer";
-    input.className = "form-control";
+        const inputWrapper = document.createElement("div");
+        inputWrapper.className = "border rounded p-3 mb-3 bg-light";
 
-    answersDiv.appendChild(input);
+        const input = document.createElement("input");
+        input.type = "text";
+        input.name = "answer";
+        input.id = "directAnswer";
+        input.className = "form-control";           
+        input.placeholder = "Votre réponse ici...";
+
+        inputWrapper.appendChild(input);
+        answersDiv.appendChild(inputWrapper);
+
   }
 
   startTimer(q.duree);
@@ -140,6 +147,9 @@ function endExam() {
   document.getElementById("questionarea").style.display = "none";
   document.getElementById("final_note").style.display = "block";
 
+  // Remove the special layout class from form-container
+  document.querySelector(".form-container").classList.remove("show-questions");
+
   let finalScore = Math.round((totalUserPoints / totalMaxPoints) * 100);
-  document.getElementById("affichenote").innerText = `Votre Note Finale: ${finalScore}%`;
+  document.getElementById("affichenote").innerText = `Votre Note Finale: ${finalScore}/100`;
 }

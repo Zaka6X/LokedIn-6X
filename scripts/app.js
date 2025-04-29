@@ -12,4 +12,3 @@ document.getElementById("logout").addEventListener("click", function(e) {
       })
       .catch(err => console.error("Erreur lors de la déconnexion :", err));
 });
-

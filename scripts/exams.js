@@ -35,20 +35,29 @@ function addOption() {
     const optionDiv = document.createElement("div");
     optionDiv.className = "input-group mb-2";
     optionDiv.innerHTML = `
-      <input type="text" name="options[]" class="form-control" placeholder="Option ${index}" required>
-      <button type="button" class="btn btn-danger" onclick="removeOption(this)">Supprimer</button>
-    `;
+  <div class="d-flex align-items-center justify-content-between w-100 border rounded px-2 py-2">
+    <input type="text" name="options[]" class="form-control" placeholder="Option ${index}" required style="max-width: 90%;">
+    <button type="button" class="btn p-1 btn-outline-danger d-flex align-items-center justify-content-center" 
+            onclick="removeOption(this)" title="Supprimer" style="width: 30px; height: 30px;">
+      <i class="bi bi-trash" style="font-size: 1rem;"></i>
+    </button>
+  </div>
+`;
+
+
     optionList.appendChild(optionDiv);
   
     updateAnswerSelect();
   }
   
   function removeOption(button) {
-    const optionDiv = button.parentElement;
-    optionDiv.remove();
-    
-    updateAnswerSelect();
+    const outerWrapper = button.closest('.mb-2'); // find the full wrapper div
+    if (outerWrapper) {
+      outerWrapper.remove();
+      updateAnswerSelect();
+    }
   }
+  
   
 function updateAnswerSelect() {
     const select = document.getElementById("answer");

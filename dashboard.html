@@ -11,66 +11,55 @@
     <!-- Ton style perso (au même niveau que index.html) -->
     <link href="style/style.css" rel="stylesheet">
   </head>
-  <body class="text-white bg-dark dashboard-page">
-    <div class="container-fluid">
-      <div class="row min-vh-100">
-        
-        <!-- Sidebar -->
-        <nav class="col-md-2 d-none d-md-block sidebar">
-          <div class="position-sticky pt-3">
-            <h4 class="text-light text-center">LOCKEDIN-6X</h4>
-            <ul class="nav flex-column mt-4">
-              <li class="nav-item">
-                <a class="nav-link text-light" href="createexam.html">📝 Create Exam</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="passexam.html">🎯 Pass Exam</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="#">📂 My Exams</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="#">👤 Account</a>
-              </li>
-              <li class="nav-item mt-4">
-                <a class="logout-link nav-link text-danger" id="logout">🚪 Log Out</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-  
-        <!-- Main content -->
-        <main class="col-md-10 ms-sm-auto px-md-4 py-4">
-          <div class="banner text-center">
-            <div id="welcome"></div>
-          </div>
-  
-          <div class="text-light">
-            <h5>Lisez attentivement les instructions et commencez votre aventure <strong>LockedIn</strong>!</h5>
-            <ul>
-              <li><strong>Créez votre examen</strong> et personnalisez-le avec vos propres questions.</li>
-              <li><strong>Partagez le lien</strong> avec vos étudiants.</li>
-              <li><strong>Rejoignez et passez l’examen</strong>.</li>
-            </ul>
-          </div>
-  
-          <div class="row mt-4">
-            <div class="col-md-6 mb-4">
-              <div class="option">
-                <p>Créer un examen personnalisé.</p>
-                <a class="btn btn-action w-100" href="createexam.html">Créer un examen</a>
-              </div>
-            </div>
-            <div class="col-md-6 mb-4">
-              <div class="option">
-                <p>Rejoindre un examen avec un lien.</p>
-                <a class="btn btn-action w-100" href="passexam.html">Passer un examen</a>
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
+  <body class="d-flex h-100 text-center text-white bg-dark">
+    
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <h3 class="float-md-start mb-0">LOCKEDIN-6X</h3>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="myexam-link" id="myexam" href="#">My Exams</a>
+            <a class="logout-link" id="logout" href="#">LOG OUT</a>
+          </nav>
+        </div>
+      </header>
+
+    <div class="banner text-center">
+        <div id="welcome"></div>
     </div>
-    <script src="scripts/app.js"></script>
+
+    
+ 
+
+     <!-- Instructions Motivantes -->
+     <div class="text-light ">
+      <h5 class="text-start">Lisez attentivement les instructions et commencez votre aventure <strong>LockedIn</strong>!</h5>
+      <ul class="text-start">
+        <li><strong>Créez votre examen</strong> et personnalisez-le avec vos propres questions.</li>
+        <li><strong>Partagez le lien d'invitation</strong> avec vos étudiants — il est généré spécialement pour votre test.</li>
+        <li><strong>Rejoignez et passez l’examen</strong> via le lien d’invitation — testez vos connaissances et découvrez votre score</li>
+      </ul>
+    </div>
+    <div class="text-center arrow-down">&#x25BC;</div>
+    <div class="row m</div>t-4">
+        <div class="col-md-6 mb-4">
+            <div class="option">
+                <p>Bienvenue dans l’espace de création d’examen. Ici, vous pouvez concevoir vos propres évaluations personnalisées en quelques étapes simples.</p>
+                <a class="btn btn-action w-100" href="createexam.html">Créez votre examen</a>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="option">
+                <p>Accédez à l’examen qui vous a été attribué en utilisant le lien fourni. L’évaluation comporte un certain nombre de questions à compléter dans un temps limité.</p>
+                <a class="btn btn-action w-100" href="passexam.html">Rejoindre un examen</a>
+            </div>
+        </div>
+    </div>
+
+      <footer class="mt-auto text-white-50">
+        <p></p>
+      </footer>
+    </div>
+    <script src="scripts/app.js"></script>      
   </body>
 </html>
