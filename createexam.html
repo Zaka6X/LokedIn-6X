@@ -23,7 +23,18 @@
             <div class="form-floating mb-3">
             <input class="form-control" name="description" id="description" placeholder="Description" style="height: 100px;" required></input>
         <label for="description">Description</label>
-    </div>
+        </div>
+        <div class="mb-3">
+            <!-- Enoncé: accept PDF and image -->
+            <label for="ennonce" class="form-label">Ajouter un énoncé (PDF ou image)</label>
+            <input type="file" class="form-control" id="ennonce" name="ennonce" accept="application/pdf,image/*">
+          
+            <!-- Media: accept image, audio, video -->
+            <label for="media" class="form-label mt-3">Ajouter un média (image, audio, vidéo)</label>
+            <input type="file" class="form-control" id="media" name="media" accept="image/*,audio/*,video/*">
+          </div>
+          
+          
       <button type="submit" class="btn btn-primary">Créer</button>
       <br><br>
       <a class="btn btn-action w-100" href="dashboard.html">Retour au Formulaire</a>
@@ -94,6 +105,10 @@
             <label for="question">Reponse Correcte</label>
         </div>
         <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="tolerance" placeholder="Taux de tolérance (ex: 10%)">
+            <label>Taux de Tolérance (ex: 10%)</label>
+        </div>
+        <div class="form-floating mb-3">
             <input type="number" class="form-control" name="note" id="note" placeholder="Note de la Question" required>
             <label for="mote">Note de la Question</label>
         </div>
@@ -111,7 +126,14 @@
     <div id="examCreatedBox" style="display: none; text-align: center; padding: 20px; border: 1px solid #ccc; border-radius: 10px; margin-top: 20px;">
         <h3>Examen créé avec succès !</h3>
         <p>Voici le lien de votre examen :</p>
-        <input type="text" id="examLinkDisplay" class="form-control" readonly>
+        <div class="input-group">
+            <input type="text" id="examLinkDisplay" class="form-control" readonly>
+            <span class="input-group-text" style="cursor: pointer;" onclick="copyExamLink()" title="Copier le lien">
+              <i class="bi bi-clipboard"></i>
+            </span>
+          </div>
+
+          
         <br>
         <button id="goToDashboard" class="btn btn-success">Retour a l'accuiel</button>
   </div>

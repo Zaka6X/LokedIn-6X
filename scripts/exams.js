@@ -78,5 +78,10 @@ function updateAnswerSelect() {
         select.innerHTML += `<option value="OP${opNumber}">Option ${opNumber}</option>`;
     });
 }
+
+function copyExamLink() {
+    const input = document.getElementById("examLinkDisplay");
+    navigator.clipboard.writeText(input.value)
+  }
   
   

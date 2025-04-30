@@ -12,6 +12,11 @@ document.querySelectorAll("form").forEach(form => {
       data.options = options;
     }
 
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+      data.userId = userId;
+    }
+
     try {
       const response = await fetch(form.action, {
         method: form.method,
@@ -30,10 +35,12 @@ document.querySelectorAll("form").forEach(form => {
 
         } else if (form.action.includes("/login")) {
           localStorage.setItem("username", result.username);
+          localStorage.setItem("userId", result.userId);
           window.location.href = "../dashboard.html";
 
         } else if (form.action.includes("/creerexam")) {
           localStorage.setItem("examId", result.id);
+
           const examIdInputs = document.querySelectorAll("#examIdQCM, #examIdDQ");
           examIdInputs.forEach(input => {
               if (input) input.value = result.id;
