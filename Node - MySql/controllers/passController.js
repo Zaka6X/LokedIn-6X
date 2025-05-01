@@ -54,8 +54,10 @@ exports.getquestions = (req, res) => {
                   note: q.note,
                   duree: q.duree,
                   reponse: q.reponse,
+                  tolerance: q.tolerance, 
                   options: optResults.length > 0 ? optResults.map(opt => opt.option_text) : null
                 });
+                
               }
             });
           });
@@ -65,5 +67,15 @@ exports.getquestions = (req, res) => {
       });
     });
   };
+
+  exports.saveLocation = (req, res) => {
+    const { latitude, longitude } = req.body;
+  
+    // Enregistrer en BDD ou loguer
+    console.log("Coordonnées reçues :", latitude, longitude);
+  
+    res.status(200).json({ message: "Coordonnées enregistrées avec succès." });
+  };
+  
   
   

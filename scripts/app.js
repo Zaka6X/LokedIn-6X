@@ -1,6 +1,9 @@
 const username = localStorage.getItem("username")?.toUpperCase();
 if (username) {
-    document.getElementById("welcome").innerHTML = `<h1>Ravi de vous avoir, ${username}!</h1>`;
+    const welcomeElement = document.getElementById("welcome");
+    if (welcomeElement) {
+      welcomeElement.innerHTML = `<h1>Ravi de vous avoir, ${username}!</h1>`;
+    } 
 }
 
 document.getElementById("logout").addEventListener("click", function(e) {
