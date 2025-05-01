@@ -12,6 +12,16 @@ body {
   font-family: Arial, sans-serif;
 }
 
+body.create-exam-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../img/LockedIn-mainbg.png');
+  overflow: auto;
+  font-family: Arial, sans-serif;
+}
+
+
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -184,4 +194,12 @@ select.form-control {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+#afterCreationContainer {
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background: white;
+}
 
+.wide-container {
+  width: 95vw !important;
+  max-width: 1400px !important;
+}

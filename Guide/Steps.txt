@@ -1,8 +1,0 @@
-I create a Frontend pages: Home, Login, Register.
-Set a Style for web pages, make them responsive
-
-Create MySQL server.
-Add JWT for Authentique.
-Creation Exams.
-
-pull connection
