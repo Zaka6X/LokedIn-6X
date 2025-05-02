@@ -45,6 +45,8 @@ const examRouter = require('./routes/exam');
 app.use('/auth', examRouter);
 const passRouter = require('./routes/pass');
 app.use('/auth', passRouter);
+const myexamsRouter = require('./routes/myexams');
+app.use('/auth', myexamsRouter);
 
 app.listen(4000, () => {
     console.log("Server Started on Port 4000");

@@ -25,6 +25,15 @@ body {
   background-position: center;
 }
 
+body.dashboard-page {
+  background-image: url('../img/LockedIn-mainbg.png'); /* change path to your dashboard image */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+
 .cover-container {
   max-width: 50em;
 }
@@ -44,7 +53,8 @@ body {
 }  
 
 .nav-masthead .nav-link,
-.nav-masthead .logout-link {
+.nav-masthead .logout-link, 
+.nav-masthead .myexam-link {
   padding: .25rem 0;
   font-weight: 700;
   background-color: transparent;
@@ -53,7 +63,8 @@ body {
   margin-left: 1rem;
 }
 
-.nav-masthead .nav-link {
+.nav-masthead .nav-link,  
+.nav-masthead .myexam-link {
   color: rgba(255, 255, 255, .5);
 }
 
@@ -75,6 +86,12 @@ body {
 .nav-masthead .nav-link:first-child,
 .nav-masthead .logout-link:first-child {
   margin-left: 0;
+}
+
+.nav-masthead .myexam-link:hover,
+.nav-masthead .myexam-link:focus {
+  border-bottom-color: #1e90ff;
+  color: #4682b4;
 }
 
 

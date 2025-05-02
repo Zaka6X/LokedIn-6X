@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const cookieParser = require('cookie-parser');
 
 const express = require('express');
+const { use } = require("../routes/auth");
 const app = express();
 app.use(cookieParser()); 
 
@@ -88,8 +89,7 @@ exports.login = async (req, res) => {
       secure: process.env.NODE_ENV === 'production', // true en prod avec HTTPS
       maxAge: 24 * 60 * 60 * 1000, // 1 jour
     });
-    console.log("Login successful!");
-    return res.status(200).json({ username: user.nom });
+    return res.status(200).json({ username: user.prenom, userId: user.Id });
   });
 };
 
