@@ -38,7 +38,7 @@
       
       <!-- Left Side -->
       <div class="col-md-4 border-end pe-4">
-        <h3 class="mb-3">Type de Question</h3>
+        <h3 class="mb-3">Ajouter des Questions</h3>
         
         <div class="form-floating mb-3">
           <select class="form-select" id="questionType" required>
@@ -48,16 +48,12 @@
           </select>
          
         </div>
-  
-        <div class="mb-3">
-          <label for="mediaFile" class="form-label">Ajouter un média</label>
-          <input class="form-control" type="file" id="mediaFile" name="media">
-        </div>
+  >
       </div>
   
       <!-- Right Side -->
       <div class="col-md-8 ps-4">
-        <form id="Qcm-question" action="/auth/addquestion" method="post" style="display: none;">
+        <form id="Qcm-question" action="/auth/addquestion" method="post" enctype="multipart/form-data" style="display: none;">
             <!-- Hidden Exam ID -->
             <input type="hidden" name="examId" id="examIdQCM" value="">
           
@@ -103,6 +99,12 @@
               <input type="number" class="form-control" name="duree" id="duree" placeholder="Durée de la Question" required>
               <label for="duree">Durée de la Question</label>
             </div>
+
+            <!-- media Input -->
+            <div class="mb-3">
+              <label for="mediaQCM" class="form-label">Ajouter un média</label>
+              <input class="form-control" type="file" id="mediaQCM" name="media">
+            </div>
           
             <!-- Submit -->
             <button type="submit" class="btn btn-secondary">Ajouter Question</button>
@@ -113,7 +115,7 @@
           
 
     <!-- Dq Choice--> 
-        <form id="Dq-question" action="/auth/addquestion" method="post" style="display: none;">
+        <form id="Dq-question" action="/auth/addquestion" method="post" enctype="multipart/form-data" style="display: none;">
             <input type="hidden" name="examId" id="examIdDQ" value="">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" name="question" id="dq-question" placeholder="Question" required>
@@ -124,7 +126,7 @@
                 <label for="question">Reponse Correcte</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="tolerance" id="dq-tolerance" placeholder="Taux de tolérance (ex: 10%)">
+                <input type="text" class="form-control" name="tolerance" id="dq-tolerance" placeholder="Taux de tolérance (ex: 10%)" required>
                 <label>Taux de Tolérance (ex: 10%)</label>
             </div>  
             <div class="form-floating mb-3">
@@ -135,17 +137,21 @@
                 <input type="number" class="form-control" name="duree" id="dq-duree" placeholder="Duree de la Question" required>
                 <label for="mote">Duree de la Question</label>
             </div>
+            <div class="mb-3">
+              <label for="mediaDQ" class="form-label">Ajouter un média</label>
+              <input class="form-control" type="file" id="mediaDQ" name="media">
+            </div>
             <button type="submit" class="btn btn-secondary">Ajouter Question</button>
             <br><br>
             <div id="messageDQ" style="text-align:center;"></div>
             <button id="creationDoneDQ" class="btn btn-primary">Creer l'examen</button>
-          <!-- Direct Question Form contents here (already in your HTML) -->
+          
         </form>
       </div>
     </div>
   </div>
       
-    <!-- Exam Created Message (initially hidden) -->
+    <!-- Exam Created Message -->
     <div id="examCreatedBox" style="display: none; text-align: center; padding: 20px; border: 1px solid #ccc; border-radius: 10px; margin-top: 20px;">
         <h3>Examen créé avec succès !</h3>
         <p>Voici le lien de votre examen :</p>

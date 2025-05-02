@@ -62,7 +62,6 @@ exports.getquestions = (req, res) => {
             });
           });
         }));
-        console.log(questionsWithOptions)
         res.status(200).json({ questions: questionsWithOptions });
       });
     });

@@ -89,8 +89,7 @@ exports.login = async (req, res) => {
       secure: process.env.NODE_ENV === 'production', // true en prod avec HTTPS
       maxAge: 24 * 60 * 60 * 1000, // 1 jour
     });
-    console.log("Login successful!");
-    return res.status(200).json({ username: user.nom, userId: user.Id });
+    return res.status(200).json({ username: user.prenom, userId: user.Id });
   });
 };
 

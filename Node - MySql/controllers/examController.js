@@ -10,8 +10,6 @@ const db = mysql.createConnection({
 
 exports.creerexam = (req, res) => {
     const { titre, description, target, userId } = req.body;
-    console.log("Creating exam with userId:", userId);
-
 
     const link = `${titre.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}`;
 
@@ -31,13 +29,12 @@ exports.creerexam = (req, res) => {
 exports.addquestion = (req, res) => {
     const { examId, question, note, duree, answer, tolerance } = req.body;
     const media = req.file ? req.file.filename : null;
+    const options = req.body.options;
 
-    const options = req.body.options; // Only used for QCM
-
-       if (Array.isArray(options) && !answer) {
+    if (Array.isArray(options) && !answer) {
         return res.status(400).json({ message: "Veuillez sélectionner une option correcte." });
     }
-  
+
     db.query("INSERT INTO question SET ?", {
         Id_exam: examId,
         question_text: question,
@@ -45,29 +42,30 @@ exports.addquestion = (req, res) => {
         note: note,
         duree: duree,
         tolerance: tolerance || null,
-        media: media 
+        media: media
     }, (error, result) => {
         if (error) {
-            console.error("Database error:", error);
-            return res.status(500).send("Error adding question.");
+            console.error("Database error:", error); // <== SHOW real SQL error
+            return res.status(500).json({ message: "Erreur SQL lors de l'ajout de la question." });
         }
-  
+
         const questionId = result.insertId;
-  
+
         if (Array.isArray(options)) {
             const optionsValues = options.map((opt, index) => [questionId, opt, `OP${index + 1}`]);
             db.query("INSERT INTO options (Id_question, option_text, OP_nbr) VALUES ?", [optionsValues], (optError) => {
                 if (optError) {
-                    console.error("Database error:", optError);
-                    return res.status(500).send("Error adding options.");
+                    console.error("Options insert error:", optError); // <== Log this too
+                    return res.status(500).json({ message: "Erreur SQL lors de l'ajout des options." });
                 }
-                res.status(201).json({ message: "Question est bien ajouter!" });
+                return res.status(201).json({ message: "Question QCM bien ajoutée." });
             });
         } else {
-            res.status(201).json({ message: "Question est bien ajouter!" });
+            return res.status(201).json({ message: "Question directe bien ajoutée." });
         }
     });
-  };
+};
+
   
   exports.validateExam = (req, res) => {
     const { link } = req.body;

@@ -20,7 +20,6 @@ exports.getExamsByUser = (req, res) => {
         console.error("Database error:", error);
         return res.status(500).json({ message: "Database error" });
       }
-      console.log(results)
       res.json(results);
     });
   };
@@ -41,7 +40,6 @@ exports.getExamsByUser = (req, res) => {
       if (questions.length === 0) return res.json([]);
 
       const questionIds = questions.map(q => q.Id_question  );
-      console.log(questionIds)
       db.query("SELECT * FROM options WHERE Id_question IN (?)", [questionIds], (optError, options) => {
         if (optError) {
           console.error("Options fetch error:", optError);
@@ -54,14 +52,13 @@ exports.getExamsByUser = (req, res) => {
           if (!optionMap[opt.Id_question]) optionMap[opt.Id_question] = [];
           optionMap[opt.Id_question].push(opt);
         });
-        console.log(options)
+
         
         // Attach options to questions
         questions.forEach(q => {
           q.options = optionMap[q.Id_question] || [];
         });
         
-        console.log(questions)
         res.json(questions);
       });
     });
