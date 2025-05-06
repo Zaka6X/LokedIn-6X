@@ -22,7 +22,7 @@ exports.creerexam = (req, res) => {
         } // Get the auto-generated ID
         const examId = result.insertId; //  this is the generated ID
         // Return the ID to the frontend
-        res.status(201).json({ id: examId, link: link});
+        res.status(201).json({ examTitle: titre, id: examId, link: link});
     });
 };
 

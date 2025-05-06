@@ -1,5 +1,4 @@
 responive myexam
 
-Why i have mongoo-express in cookies
 Where affiche GPS Position
 

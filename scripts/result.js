@@ -78,7 +78,8 @@ document.querySelectorAll("form").forEach(form => {
         localStorage.setItem("examId", result.id);
         document.querySelectorAll("#examIdQCM, #examIdDQ").forEach(input => input.value = result.id);
         document.getElementById("examLinkDisplay").value = result.link;
-        typequestion(); // show question section
+        typequestion(result.examTitle); // show question section
+
       } else if (form.action.includes("/addquestion")) {
         messageDiv.innerHTML = `<span style="color: green;">${result.message}</span>`;
         form.reset();
