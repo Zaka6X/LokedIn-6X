@@ -55,7 +55,8 @@ exports.getquestions = (req, res) => {
                   duree: q.duree,
                   reponse: q.reponse,
                   tolerance: q.tolerance, 
-                  options: optResults.length > 0 ? optResults.map(opt => opt.option_text) : null
+                  options: optResults.length > 0 ? optResults.map(opt => opt.option_text) : null,
+                  media: q.media
                 });
                 
               }

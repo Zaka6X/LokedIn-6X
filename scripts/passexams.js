@@ -19,8 +19,11 @@ document.getElementById("getlinkform").addEventListener("submit", async (e) => {
     });
     
     const data = await response.json();
-
+    
     if (response.ok) {
+      document.getElementById("getlinkform").style.display = "none";
+      document.getElementById("loading-message").style.display = "block";
+
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const latitude = position.coords.latitude;
@@ -36,6 +39,7 @@ document.getElementById("getlinkform").addEventListener("submit", async (e) => {
             // Now start exam only after location is sent
             examData = data.questions;
             document.getElementById("getlinkform").style.display = "none";
+            document.getElementById("loading-message").style.display = "none";
             document.getElementById("questionarea").style.display = "block";
             document.querySelector(".form-container").classList.add("show-questions");
             showQuestion();
@@ -46,12 +50,15 @@ document.getElementById("getlinkform").addEventListener("submit", async (e) => {
         },
         (error) => {
           console.error("Géolocalisation refusée ou échouée :", error);
-          alert("Vous devez accepter la géolocalisation pour commencer l'examen.");
+          document.getElementById("getlinkform").style.display = "block";
+          document.getElementById("loading-message").style.display = "none";
+          showToast("Géolocalisation requise pour commencer l'examen.", false);
         }
       );
       
     } else {
-      document.getElementById("message").innerHTML = `<span style="color: red;">${data.message}</span>`;
+      showToast("Exam not found", false);
+
     }
 
   } catch (error) {
@@ -69,8 +76,27 @@ function showQuestion() {
   const q = examData[currentQuestion];
 
   document.getElementById("question-title").innerText = q.question_text;
+  // Show media if present
   const answersDiv = document.getElementById("answers");
   answersDiv.innerHTML = '';
+
+  if (q.media) {
+    const mediaContainer = document.createElement("div");
+    mediaContainer.className = "question-media my-3 text-center";
+
+    const ext = q.media.split('.').pop().toLowerCase();
+    const src = `../Node - MySql/uploads/${q.media}`;
+
+    if (["jpg", "jpeg", "png", "gif", "webp"].includes(ext)) {
+      mediaContainer.innerHTML = `<img src="${src}" class="img-fluid rounded" style="max-width: 400px;">`;
+    } else if (["mp3", "wav", "ogg"].includes(ext)) {
+      mediaContainer.innerHTML = `<audio controls src="${src}" style="width: 100%;"></audio>`;
+    } else if (["mp4", "webm", "ogg"].includes(ext)) {
+      mediaContainer.innerHTML = `<video controls src="${src}" style="max-width: 100%; max-height: 300px;"></video>`;
+    }
+
+    answersDiv.appendChild(mediaContainer);
+  }
 
   if (q.options && q.options.length > 0) {
     q.options.forEach(opt => {
@@ -123,8 +149,16 @@ function startTimer(seconds) {
 }
 
 function updateTimerDisplay() {
-  document.getElementById("timer").innerText = `Temps restant: ${timeLeft}s`;
+  const timerEl = document.getElementById("timer");
+  timerEl.innerText = `Temps restant: ${timeLeft}s`;
+
+  if (timeLeft <= 6) {
+    timerEl.style.color = "red";
+  } else {
+    timerEl.style.color = "green";
+  }
 }
+
 
 document.getElementById("next-question").addEventListener("click", () => {
   clearInterval(timerInterval);
@@ -190,7 +224,11 @@ function endExam() {
   document.querySelector(".form-container").classList.remove("show-questions");
 
   let finalScore = Math.round((totalUserPoints / totalMaxPoints) * 100);
-  document.getElementById("affichenote").innerText = `Votre Note Finale: ${finalScore}/100`;
+  const noteElement = document.getElementById("affichenote");
+
+  noteElement.innerText = `Votre Note Finale: ${finalScore}/100`;
+  noteElement.style.color = finalScore > 50 ? "green" : "red";
+
 }
 
 function enregistrerGeolocalisation() {
@@ -198,7 +236,7 @@ function enregistrerGeolocalisation() {
     console.log("La géolocalisation n'est pas supportée par ce navigateur.");
     return;
   }
-
+  
   navigator.geolocation.getCurrentPosition(
     (position) => {
       const latitude = position.coords.latitude;

@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LockedIn 6X - Passer l’Examen</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="img/logo.png" >
+
+
   <link rel="stylesheet" href="style/form.css">
 </head>
 <body>
@@ -19,7 +22,6 @@
         <br>
         <button type="submit" id="commence_exam" class="btn btn-success">Commencer l'Examen</button>
             <br>
-        <div id="message"></div>
         <br>
 
         <a class="btn btn-action w-100" href="dashboard.html">Retour au Formulaire</a>
@@ -43,7 +45,14 @@
         <a class="btn btn-action w-100" href="dashboard.html">Retour au Formulaire</a>
     </div>
 
+      <div class="text-black text-center" id="loading-message" style="display: none;">
+          Examen est chargé, en attente de votre localisation...
+      </div>
+
+
   </div>
+  <div id="toast-container"></div>
+
   <script src="scripts/passexams.js"></script>
   <script src="scripts/result.js"></script>
 </body>

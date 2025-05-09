@@ -22,6 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="copy-btn" onclick="copyToClipboard('link-${exam.id}', event)">
                   <i class="fas fa-copy"></i>
                 </button>
+                <br>
+                <br>
+                <button class="btn btn-sm btn-danger delete-exam-btn" data-exam-id="${exam.id}" onclick="event.stopPropagation(); deleteExam(${exam.id})">
+                  <i class="fas fa-trash-alt"></i>  Delete Exam
+                </button>
 
               </p>
             </div>
@@ -199,7 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify({ options: updatedOptions })
           });
   
-          alert("Changes saved!");
+          showToast("Changes saved!", true);
+
 
             // Update question display
             cells[1].textContent = updatedQuestion.question_text;
@@ -260,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const row = e.target.closest("tr");
       const questionId = row.getAttribute("data-question-id");
       console.log(questionId)
-      if (confirm("Are you sure you want to delete this question?")) {
+      showCustomAlert("Are you sure you want to delete this question?", () => {
         fetch("/auth/deletequestion", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -268,16 +274,61 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(res => res.json())
         .then(data => {
-          alert("Question deleted.");
+          showToast("Question deleted.", true);
           const childRow = row.nextElementSibling?.classList.contains("child-row") ? row.nextElementSibling : null;
-          row.remove();
+          row.remove(); 
           if (childRow) childRow.remove();
         })
         .catch(err => {
           console.error("Delete error:", err);
           alert("Failed to delete question.");
         });
-      }
+      })
     }
   });
-  
+
+ function deleteExam(examId) {
+  showCustomAlert("Are you sure you want to delete this exam?", () => {
+    fetch("/auth/deleteexam", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: examId })
+    })
+    .then(res => res.json())
+    .then(data => {
+      showToast("Exam deleted successfully.", false);
+      
+      const card = document.querySelector(`.exam-card[data-exam-id='${examId}']`);
+      if (card) card.remove();
+    })
+    .catch(err => {
+      console.error("Failed to delete exam:", err);
+      showCustomAlert("Failed to delete exam.");
+    });
+  });
+}
+
+
+function showCustomAlert(message, onConfirm, onCancel = null) {
+  const alertBox = document.getElementById("customAlertBox");
+  const messageDiv = document.getElementById("customAlertMessage");
+  const confirmBtn = document.getElementById("customAlertConfirm");
+  const cancelBtn = document.getElementById("customAlertCancel");
+
+  messageDiv.textContent = message;
+  alertBox.style.display = "block";
+
+  // Clear previous handlers
+  confirmBtn.onclick = null;
+  cancelBtn.onclick = null;
+
+  confirmBtn.onclick = () => {
+    alertBox.style.display = "none";
+    if (onConfirm) onConfirm();
+  };
+
+  cancelBtn.onclick = () => {
+    alertBox.style.display = "none";
+    if (onCancel) onCancel();
+  };
+}
