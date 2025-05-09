@@ -1,11 +1,11 @@
-function typequestion(){
+function typequestion(examTitle){
     // Hide the initial form and show the after-creation form
     document.getElementById("examForm").style.display = "none";
     document.getElementById("afterCreationContainer").style.display = "block";
     // Expand .form-container width dynamically
     document.querySelector(".form-container").classList.add("wide-container");
 
-    document.getElementById("form-title").innerHTML = "Type de Question";
+    document.getElementById("form-title").innerHTML = examTitle;
 
 }
 

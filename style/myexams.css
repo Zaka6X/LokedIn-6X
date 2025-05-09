@@ -1,16 +1,20 @@
+/* Background and layout */
 body {
   background-image: url('../img/LockedIn-mainbg.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-attachment: fixed; /* Fix the background while scrolling */
+  background-attachment: fixed;
 }
 
 .cover-container {
   max-width: 50em;
+  margin: 0 auto;
+  padding: 1rem;
 }
-  
-.nav-masthead .logout-link, 
+
+/* Navigation links */
+.nav-masthead .logout-link,
 .nav-masthead .myexam-link {
   padding: .25rem 0;
   font-weight: 700;
@@ -19,7 +23,7 @@ body {
   text-decoration: none;
   margin-left: 1rem;
 }
- 
+
 .nav-masthead .myexam-link {
   color: rgba(255, 255, 255, .5);
 }
@@ -33,7 +37,6 @@ body {
   border-bottom-color: #d81111c2;
 }
 
-/* Remove left margin from the first link */
 .nav-masthead .logout-link:first-child {
   margin-left: 0;
 }
@@ -44,44 +47,138 @@ body {
   color: #4682b4;
 }
 
+/* Exam card styling */
 .exam-card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+/* Copy button */
+.copy-btn {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #007bff;
+  font-size: 16px;
+}
+
+.copy-btn:hover {
+  color: #0056b3;
+}
+
+/* Question container responsiveness */
+#questionContainer {
+  display: none;
+  overflow-x: auto;
+  max-width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+#questionContainer table {
+  width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+}
+
+#questionContainer th,
+#questionContainer td {
+  padding: 8px;
+  text-align: left;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* Child row styling (for nested content) */
+.child-row {
+  background-color: #2c2f33 !important;
+  font-style: italic;
+}
+
+.child-row ul {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.child-row td {
+  text-align: left !important;
+  vertical-align: top;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .cover-container {
+    padding: 1rem;
   }
 
-
-  .copy-btn {
-    margin-left: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #007bff;
-    font-size: 16px;
-  }
-  .copy-btn:hover {
-    color: #0056b3;
-  }
-    
-  #questionContainer .exam-card {
-    margin-top: 20px;
-    padding: 20px;
+  .nav-masthead {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .child-row {
-    background-color: #2c2f33 !important;
-    font-style: italic;
+  .nav-masthead .logout-link,
+  .nav-masthead .myexam-link {
+    margin-left: 0;
+    margin-top: 0.5rem;
   }
-  .child-row ul {
-    padding-left: 1.2rem;
-    margin: 0;
+
+  #questionContainer table {
+    font-size: 0.9rem;
   }
-  .child-row td {
-    text-align: left !important;
-    vertical-align: top;
+}
+  #toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.toast-message {
+  margin-bottom: 10px;
+  min-width: 300px;
+  max-width: 500px;
+  height: 40px;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: slideIn 0.4s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.toast-success {
+  background-color: #28a745;
+}
+
+.toast-error {
+  background-color: #dc3545;
+}
+
+.toast-message .close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
   }
-  
-  
-  
-  
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
